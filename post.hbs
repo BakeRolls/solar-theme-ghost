@@ -2,12 +2,16 @@
 
 {{#post}}
 <article class="{{post_class}}">
+	<h1><a href="{{ url }}">{{ title }}</a></h1>
 
-    <h1><a href="{{ url }}">{{ title }}</a></h1>
+	<div class="post-content">{{ content }}</div>
 
-    <div class="post-content">{{ content }}</div>
+	<p class="meta">Posted on <span class="postdate">{{date format="MMM Do, YYYY"}}</span></p>
+</article>
 
-    <p class="meta">Posted on <span class="postdate">{{date format="MMM Do, YYYY"}}</span></p>
+<script data-isso="https://192k.pw/fcgi-bin/isso" src="https://192k.pw/fcgi-bin/isso/js/embed.min.js"></script>
 
+<article>
+	<section id="isso-thread"></section>
 </article>
 {{/post}}

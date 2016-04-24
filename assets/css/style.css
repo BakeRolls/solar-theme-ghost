@@ -11,7 +11,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 	display: block;
 }
 body {
-	line-height: 1;
+	line-height: 1.1;
+}
+::selection {
+	background: rgba(255, 255, 255, .05);
 }
 ol, ul {
 	list-style: bullet;
@@ -27,12 +30,15 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+iframe {
+	max-width: 100%;
+}
 
 
 
 /*** Basics ***/
 body {
-	font-family: Verdana, serif;
+	font-family: Verdana, Sans-Serif;
 	font-size: 13px;
 	line-height: 1.7;
 }
@@ -40,14 +46,14 @@ body {
 a, a:active, a:visited {
 	text-decoration: none;
 	border-bottom: 1px solid #839496;
-	padding-bottom: 2px;
+	padding: 2px 4px;
 }
 a:hover {
 	background-color: #839496;
 	color: #000000;
 }
 
-p { margin-bottom: 15px; }
+p { margin-bottom: 15px; word-wrap: break-word; }
 ul, ol { padding: 0 0 18px 30px; }
 ol li, ul li { margin-top: 10px; margin-bottom: 10px; }
 em, i { font-style: italic; }
@@ -57,24 +63,26 @@ sup { vertical-align: super; font-size: 0.85em; }
 sub { vertical-align: sub; font-size: 0.85em; }
 
 code {
-    font: 0.85em Monaco, Courier, Monospace;
+		font: 0.85em Monaco, Courier, Monospace;
 }
 
 blockquote {
-    margin: 22px 22px;
-    padding: 0 20px;
-    border-left: 2px solid #000000;
-    font-size: 1.2em;
-    font-style: italic;
-    line-height: 1.5em;
+		margin: 22px 22px;
+		padding: 0 20px;
+		border-left: 2px solid #000000;
+		font-size: 1.2em;
+		font-style: italic;
+		line-height: 1.5em;
 }
 
 acronym, abbr {
 	cursor: help;
-	letter-spacing: 1px;
 	border-bottom: 1px dashed;
 }
 
+hr {
+	border: 1px solid #000000;
+}
 
 h1 {
 	font-size: 17px;
@@ -115,8 +123,11 @@ h3 {
 }
 
 #header {
-	width: 500px;
+	width: 650px;
+	padding-left: 150px;
 	margin: 40px auto 50px auto;
+	background: url(/assets/img/dag.svg) no-repeat center left;
+	background-size: 100px 100px;
 }
 #header h1 {
 	font-size: 32px;
@@ -149,7 +160,7 @@ h3 {
 
 #footer {
 	width: 500px;
-	margin: 50px auto 20px auto;
+	margin: 20px auto;
 	padding-top: 10px;
 	font-size: 0.85em;
 	border-top: 1px solid #073642;
@@ -175,8 +186,13 @@ h3 {
 
 #sidebar a {
 	border: none;
-	font-family: "Helvetica Neue", "Helvetica", serif;
+	display: block;
+	font-family: "Helvetica Neue", "Helvetica", Sans-Serif;
 	font-size: 1.2em;
+	padding: 0;
+}
+
+#sidebar a span {
 	padding: 2px 4px;
 }
 
@@ -209,6 +225,10 @@ article h1 a.anchor {
 	margin-left: 8px;
 }
 
+article p {
+	text-align: justify;
+}
+
 article img {
 	display: block;
 	text-align: center;
@@ -237,22 +257,29 @@ img.center {
 	margin: 0 auto 1em auto;
 }
 
+pre, code {
+	background-color: rgba(255, 255, 255, .015);
+	color: #93a1a1;
+	font-size: 95%;
+}
+
+code {
+	padding: 2px;
+}
+
 pre code {
 	display: block;
-	background-color: #073642;
-	color: #93a1a1;
-	border: 1px solid #2d6472;
-    border-radius: 3px 3px 3px 3px;
-    overflow: auto;
-    padding: 6px 10px;
-    margin-top: 10px;
-    margin-bottom: 15px;
+	overflow: auto;
+	line-height: 150%;
+	padding: 10px;
+	margin-top: 10px;
+	margin-bottom: 15px;
 }
 
 code[class*="language-"], pre[class*="language-"] {
-	-moz-tab-size: 4;
-	-o-tab-size: 4;
-	tab-size: 4;
+	-moz-tab-size: 2;
+	-o-tab-size: 2;
+	tab-size: 2;
 	-webkit-hyphens: none;
 	-moz-hyphens: none;
 	-ms-hyphens: none;
@@ -272,8 +299,8 @@ code[class*="language-"], pre[class*="language-"] {
 /*** Pagination ***/
 .postnavigation {
 	padding-top: 10px;
-    text-align: center;
-    font-size: 0.85em;
+		text-align: center;
+		font-size: 0.85em;
 }
 
 .postnavigation .left {
@@ -288,9 +315,21 @@ code[class*="language-"], pre[class*="language-"] {
 
 /*** Media Queries ***/
 @media all and (max-width: 870px) {
+	article img {
+		max-width: 100%;
+	}
 
 	#page, #header, #content, #footer {
 		width: inherit;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
+	#header {
+		background-position: right 20px center;
+	}
+	#header h1,
+	#header p {
 		padding-left: 10px;
 		padding-right: 10px;
 	}
@@ -301,6 +340,18 @@ code[class*="language-"], pre[class*="language-"] {
 		width: 100%;
 		left: 0;
 		margin: 10px 10px 20px 10px;
+	}
+
+	#sidebar nav ul {
+		padding-left: 0;
+	}
+
+	#sidebar nav ul li {
+		display: inline;
+	}
+
+	#sidebar a {
+		display: inline;
 	}
 
 	#sidebar nav select.mnav {
@@ -318,29 +369,29 @@ code[class*="language-"], pre[class*="language-"] {
 
 /*** Icons ***/
 @font-face {
-  font-family: 'solarthemeicons';
-  src: url('../fonts/solarthemeicons.eot');
-  src: url('../fonts/solarthemeicons.eot#iefix') format('embedded-opentype'),
-       url('../fonts/solarthemeicons.woff') format('woff'),
-       url('../fonts/solarthemeicons.ttf') format('truetype'),
-       url('../fonts/solarthemeicons.svg#solarthemeicons') format('svg');
-  font-weight: normal;
-  font-style: normal;
+	font-family: 'solarthemeicons';
+	src: url('../fonts/solarthemeicons.eot');
+	src: url('../fonts/solarthemeicons.eot#iefix') format('embedded-opentype'),
+			 url('../fonts/solarthemeicons.woff') format('woff'),
+			 url('../fonts/solarthemeicons.ttf') format('truetype'),
+			 url('../fonts/solarthemeicons.svg#solarthemeicons') format('svg');
+	font-weight: normal;
+	font-style: normal;
 }
 
 [class^="icon-"]:before, [class*=" icon-"]:before {
-  font-family: "solarthemeicons";
-  font-style: normal;
-  font-weight: normal;
-  speak: none;
-  display: inline-block;
-  text-decoration: inherit;
-  width: 1em;
-  margin-right: .2em;
-  text-align: center;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1.7;
+	font-family: "solarthemeicons";
+	font-style: normal;
+	font-weight: normal;
+	speak: none;
+	display: inline-block;
+	text-decoration: inherit;
+	width: 1em;
+	margin-right: .2em;
+	text-align: center;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1.7;
 }
  
 .icon-sun:before { content: '\e801'; }
